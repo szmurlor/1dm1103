@@ -1,24 +1,24 @@
-   36  pwd
-   37  dir
-   38  ls
-   39  clear
-   40  cd Desktop
-   41  ls
-   42  cd ..
-   43  echo $SHELL
-   44  ls
-   45  cc
-   46  cc pierwszy.c
+   36  pwd - print working directory
+   37  dir - wylistuj pliki w moim bieżącym katalogu
+   38  ls - to samo co dir tylko inaczej wygląda
+   39  clear - wyczysć konsolę
+   40  cd Desktop - zmień bieżący katalog na Desktop (Desktop musi się znajdować poniżej bieżącego)
+   41  ls 
+   42  cd .. - zmien bieżący katalog na piętro wyżej
+   43  echo $SHELL - wyświetl program powłoki (shella) który interpretuje wpisywane komendy
+   44  ls 
+   45  cc - komenda kompilatora
+   46  cc pierwszy.c - komenda kompilacji i linkowania programu z pliku tekstowego o nazwie pierwszy.c
    47  ls
-   48  ls -l a.out
-   49  cc -c pierwszy.c
-   50  ls -la
+   48  ls -l a.out - wyświetl więcej informacji o pliku a.out
+   49  cc -c pierwszy.c - tylko skompiluj pierwszy.c (powstanie plik pierwszy.o)
+   50  ls -la - wyświetl wszystkei pliki - nawet ukryte (opcja -a)
    51  ls -la pierwszy.o
-   52  bc -l 
-   53  history
-   54  ./a.out
-   55  echo "AKUKU"
-   56  echo $?
+   52  bc -l - kalkulator :-)
+   53  history - wyświetl historię komend
+   54  ./a.out - uruchom przed chwilą skompilowany program
+   55  echo "AKUKU" - po prostu wyświetl na ekranie AKUKU
+   56  echo $? - wyświetl wynik zwrócony przez ostatnio uruchomiony program
    57  ./a.out 
    58  echo $?
    59  ./a.out 
