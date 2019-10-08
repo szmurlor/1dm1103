@@ -1,0 +1,43 @@
+   36  pwd
+   37  dir
+   38  ls
+   39  clear
+   40  cd Desktop
+   41  ls
+   42  cd ..
+   43  echo $SHELL
+   44  ls
+   45  cc
+   46  cc pierwszy.c
+   47  ls
+   48  ls -l a.out
+   49  cc -c pierwszy.c
+   50  ls -la
+   51  ls -la pierwszy.o
+   52  bc -l 
+   53  history
+   54  ./a.out
+   55  echo "AKUKU"
+   56  echo $?
+   57  ./a.out 
+   58  echo $?
+   59  ./a.out 
+   60  echo $?
+   61  cc -c pierwszy.c
+   62  ./a.out 
+   63  echo $?
+   64  cc pierwszy.c
+   65  ./a.out 
+   66  echo $?
+   67  cc pierwszy.c
+   68  ./a.out 
+   69  ./a.out NAJFAJNIEJSZE ZAJECIA DZISIAJ
+   70  cc pierwszy.c
+   71  ./a.out NAJFAJNIEJSZE ZAJECIA DZISIAJ
+   72  cc pierwszy.c
+   73  ./a.out NAJFAJNIEJSZE ZAJECIA DZISIAJ
+   74  cc pierwszy.c
+   75  ./a.out NAJFAJNIEJSZE ZAJECIA DZISIAJ
+   76  history -100
+   77  history 100
+   78  history 50
