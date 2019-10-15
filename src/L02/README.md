@@ -1,5 +1,7 @@
 # Seminarium 2
 
+Uwaga! Znajdź na tej stronie link: [Zadanie 2](zadanie2.md)
+
 Scenariusz zajęć:
 
 1. Powtórka materiału z poprzedniego wykładu
