@@ -1,15 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-/* Sumator: dodaje liczby podane jako argumenty wywołania */
-int main( int argc, char *argv[] ) {
-        double s = 0;
-        int i;
+int main(int argc, char *argv[]) {
+    int i;
 
-        for( i= 1; i < argc; i++ )
-                s = s + atof( argv[i] );
+    printf("Witaj świecie podałeś %d argumentów %%!\n", argc);
 
-        printf( "suma=%g\n", s );
+    /* argc = 0; */
+    for (i=0; i<argc; i++) {
+        printf("[%d]: %s\n", i, argv[i]);
+        /* i = i + 1; */
+        /* i += 1; */
+        /* i++; */
+    }
 
-        return 0;
+    return 0;
 }
