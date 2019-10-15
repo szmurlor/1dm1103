@@ -142,6 +142,8 @@ Scenariusz zajęć:
 9. Dodajmy liczenie iloczynu skalarnego zgodnie ze wzorem:
 
    $$p = \prod\limits_{i=1}^{\text{argc}-1} \text{atof}(\text{argv}[i])$$
+   
+   <a href="https://www.codecogs.com/eqnedit.php?latex=p&space;=&space;\prod\limits_{i=1}^{\text{argc}-1}&space;\text{atof}(\text{argv}[i])" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p&space;=&space;\prod\limits_{i=1}^{\text{argc}-1}&space;\text{atof}(\text{argv}[i])" title="p = \prod\limits_{i=1}^{\text{argc}-1} \text{atof}(\text{argv}[i])" /></a>
 
    ```c++
    #include <stdio.h>
