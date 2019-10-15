@@ -19,9 +19,10 @@ Iloczyn = 36.000000
 Maksimum = 5.000000
 ```
 
-**UWAGA!** Napisany program proszę wgrać do ISODa! Prosze wgrać tylko program źródłowy drugi.c.
-To jest sprawdzian czy się uczycie i czy cczytacie materiały po i przed kolejnymi zajeciami! 
+**UWAGA!** Napisany program proszę wgrać do ISODa! Proszę wgrać tylko program źródłowy drugi.c.
+To jest sprawdzian czy się uczycie i czy czytacie dokładnie materiały po i przed kolejnymi zajęciami! 
 Proszę wejść do ISODa, kliknąć na termin zajęć seminaryjnych w waszym indywidualnym planie zajęć na ISOD, 
-oraz proszę kliknąć 'Załącz plik' w wierszu Zadanie S02.
+oraz proszę kliknąć 'Załącz plik' w wierszu Zadanie S02. Dla tych, którzy zrobia to zaania na czas czeka 
+nagroda w postaci dodatkowych punktów.
 
 ![Zrzut ekranu z przyciskiem](isod.png)
