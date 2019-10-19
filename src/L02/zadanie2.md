@@ -22,7 +22,7 @@ Maksimum = 5.000000
 **UWAGA!** Napisany program proszę wgrać do ISODa! Proszę wgrać tylko program źródłowy drugi.c.
 To jest sprawdzian czy się uczycie i czy czytacie dokładnie materiały po i przed kolejnymi zajęciami! 
 Proszę wejść do ISODa, kliknąć na termin zajęć seminaryjnych w waszym indywidualnym planie zajęć na ISOD, 
-oraz proszę kliknąć 'Załącz plik' w wierszu Zadanie S02. Dla tych, którzy zrobia to zaania na czas czeka 
-nagroda w postaci dodatkowych punktów.
+oraz proszę kliknąć 'Załącz plik' w wierszu Zadanie S02. Dla tych, którzy zrobia to zadanie na czas czeka 
+nagroda w postaci dodatkowych punktów do zalicznia!
 
 ![Zrzut ekranu z przyciskiem](isod.png)
