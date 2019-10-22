@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*Ten program jest tylko obrazowo. Pokazuje składnię funkcji. */
+
 double sum( double v[], int n )
 {
         double s = 0.0;
