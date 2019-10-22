@@ -2,6 +2,7 @@ Dzisiaj strasznie dużo czasu poświęciliśmy na prezentacje programowania w j�
 
 Trochę czasu również poświęciliśmy systemowi kontroli wersji `git`. Zaznaczam , że system kontroli wersji `git` nie służy do komiplacji. To jest narzędzie ułatwiające sledzenie zmian oraz scalanie zmian (* ang. merge changes*) zrealizowaych przez różnych programistów.
 
+
 Podstawowe pojęcia związane z `git`. Warto zajrzeć na strony (https://rogerdudler.github.io/git-guide/index.pl.html, https://python101.readthedocs.io/pl/latest/git/, )
 
 * centralne repozytorium (to jest dla github, ale nie musi, ale o tym kiedy indziej)
