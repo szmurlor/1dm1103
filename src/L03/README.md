@@ -1,5 +1,52 @@
 Dzisiaj strasznie dużo czasu poświęciliśmy na prezentacje programowania w języku C pod Windowsami… Zasadniczo więcej nie będziemy do tego wracać na seminarium! Musicie państwo samodzielnie poćwiczyć! Musicie zacząć programować lokalnie na waszych komputerach, ponieważ wkrótce zaczniemy używać wielu plików i  narzędzia online staną się bardzo niewygodne lub nieużyteczne.
 
+Trochę czasu również poświęciliśmy systemowi kontroli wersji `git`. Zaznaczam , że system kontroli wersji `git` nie służy do komiplacji. To jest narzędzie ułatwiające sledzenie zmian oraz scalanie zmian (* ang. merge changes*) zrealizowaych przez różnych programistów.
+
+Podstawowe pojęcia związane z `git`. Warto zajrzeć na strony (https://rogerdudler.github.io/git-guide/index.pl.html, https://python101.readthedocs.io/pl/latest/git/, )
+
+* centralne repozytorium (to jest dla github, ale nie musi, ale o tym kiedy indziej)
+
+* lokalne repozytoria a właściwie kopie centralnego (czyli klony), może ich być wiele...
+
+* pierwszą rzeczą klonujemy centralne repozytorium do naszego bieżącego katalogu za pomocą komendy:
+
+  ```bash
+  git clone https://github.com/szmurlor/1dm1103.git
+  ```
+
+- otrzymamy w katalogu lokalnym nowy folder o nazwie `1dm1103` w którym będą wszystkie pliki z naszego seminarium
+
+- gdy wykonamy jakieś zmiany w plikach to zatwierdzamy ich paczkę wykonując commit wpisując:
+
+  ```bash
+  git commit -a
+  ```
+
+  nie zapominamy o konieczności wpisania komentarza ;-)
+
+- 	Gdy chcemy zaktualizować lokalną kopię pobierając przesłane zmiany przez innych na serwer to 'ciągniemy' te zmiany wpisując:
+
+   ```bash
+   git pull
+   ```
+
+- 	Gdy chcemy wysłać wszystkie zatwierdzone przez nas paczki zmian (commity) to wpychamy je na serwer wpisując:
+
+   ```bash
+   git push
+   ```
+
+- 	Uwaga, aby konkretny plik mógł podlegać kontroli wersji musi zostać dodany do listy śledzonych plików przez gita za pomocą komedy:
+
+   ```bash
+   git add nowy_plik.c
+   ```
+
+
+- 	Od tej pory, każde wpisanie komendy `git commit -a` będzie sprawdzać, czy wykonaliśmy w danym pliku jakieś zmiany. Jeżeli tak to zmiany te zostaną uwzględnione jako paczka zmian (commit).
+
+Proszę się na razie nie martwic za bardzo gitem! To na razie tylko zasygnalizowanie tematu. Będziemy tego używać na bieżąco i do końca semestru dojdziecie do wprawy :-).
+
 1. Instalacja kompilatora C pod Windows (użyć msys2 a potem pacman -S base-devel gcc)
    Kilka danych i linków (to jest powtórzenie informacji z ISODa :-):
 
@@ -140,7 +187,7 @@ Dzisiaj strasznie dużo czasu poświęciliśmy na prezentacje programowania w j�
 
 12.  W międzyczasie zmieniliśmy wygląd bardzo długiej funkcji `main` w czytelny SPIS TREŚCI:
 
-    
+​    
 
     ```c
     int main(int argc, char *argv[]) {
@@ -156,9 +203,9 @@ Dzisiaj strasznie dużo czasu poświęciliśmy na prezentacje programowania w j�
         return 0;
     }
     ```
-
+    
     Używając sformułowania *spis treści* mam na myśli, to, że funkcja `main` stanowi teraz w kolejnych linijkach czytelnie wyświetlony scenariusz działania (algorytm) naszego programu bez wnikania w szczegóły implementacyjne. Jednym rzutem oka od razu widzimy co robi nasz program i do czego służy. Osiągnęliśmy to dzięki:
-
+    
     - zastosowaniu logicznie uzasadnionego podziału na funkcje, które robią tylko to do czego zostały napisane; z zasady powinniśmy pisać funkcje robiąca *jak najmniej*. Ułatwi to nam w przyszłości testowanie programów.
     - zastosowaniu czytelnych i precyzyjnych nazw funkcji - nazwa funkcji odzwierciedla dokładnie to co funkcja robi.
 
