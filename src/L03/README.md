@@ -188,6 +188,8 @@ Proszę się na razie nie martwic za bardzo gitem! To na razie tylko zasygnalizo
 
 12.  W międzyczasie zmieniliśmy wygląd bardzo długiej funkcji `main` w czytelny SPIS TREŚCI:
 
+    
+
     ```c
     int main(int argc, char *argv[]) {
         int n = argc-1;
