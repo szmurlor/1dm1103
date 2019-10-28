@@ -188,8 +188,6 @@ Proszę się na razie nie martwic za bardzo gitem! To na razie tylko zasygnalizo
 
 12.  W międzyczasie zmieniliśmy wygląd bardzo długiej funkcji `main` w czytelny SPIS TREŚCI:
 
-​    
-
     ```c
     int main(int argc, char *argv[]) {
         int n = argc-1;
@@ -204,9 +202,11 @@ Proszę się na razie nie martwic za bardzo gitem! To na razie tylko zasygnalizo
         return 0;
     }
     ```
-    
-    Używając sformułowania *spis treści* mam na myśli, to, że funkcja `main` stanowi teraz w kolejnych linijkach czytelnie wyświetlony scenariusz działania (algorytm) naszego programu bez wnikania w szczegóły implementacyjne. Jednym rzutem oka od razu widzimy co robi nasz program i do czego służy. Osiągnęliśmy to dzięki:
-    
-    - zastosowaniu logicznie uzasadnionego podziału na funkcje, które robią tylko to do czego zostały napisane; z zasady powinniśmy pisać funkcje robiąca *jak najmniej*. Ułatwi to nam w przyszłości testowanie programów.
-    - zastosowaniu czytelnych i precyzyjnych nazw funkcji - nazwa funkcji odzwierciedla dokładnie to co funkcja robi.
 
+      
+   Używając sformułowania *spis treści* mam na myśli, to, że funkcja `main` stanowi teraz w kolejnych linijkach czytelnie wyświetlony scenariusz działania (algorytm) naszego programu bez wnikania w szczegóły implementacyjne. Jednym rzutem oka od razu widzimy co robi nasz program i do czego służy. Osiągnęliśmy to dzięki:
+    
+   - zastosowaniu logicznie uzasadnionego podziału na funkcje, które robią tylko to do czego zostały napisane; z zasady powinniśmy pisać funkcje robiąca *jak najmniej*. Ułatwi to nam w przyszłości testowanie programów.
+   - zastosowaniu czytelnych i precyzyjnych nazw funkcji - nazwa funkcji odzwierciedla dokładnie to co funkcja robi.
+    
+ 
