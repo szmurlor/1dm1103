@@ -32,6 +32,24 @@ void wypisz(int n, float v[]) {
     }
 }
 
+int suma(float v1[], float v2[], float vs[], int n) {
+    int i;
+    for (i = 0; i <n; i++) {
+        vs[i] = v1[i] + v2[i];
+    }
+
+    return n;
+}
+
+void zapisz(float v[], int n, char nazwa_pliku[]) {
+    FILE * fout = fopen(nazwa_pliku, "w");
+    fprintf(fout, "%d\n", n);
+    int i;
+    for (i = 0; i < n; i++) {
+        fprintf(fout, "%f\n", v[i]);
+    }
+    fclose(fout);
+}
 
 int main(int argc, char *argv[]) {
     /* float v1[100]; */
@@ -43,12 +61,15 @@ int main(int argc, char *argv[]) {
     int n3;
 
     wczytaj(v1, &n1, argv[1]);
-    /*
     wczytaj(v2, &n2, argv[2]);
-    suma(v1,v2,v3,n1);
+
+    n3 = suma(v1,v2,v3,n1);
+
     zapisz(v3,n3, argv[3]);
-    */
+
     wypisz(n1, v1);
+    wypisz(n2, v2);
+    wypisz(n3, v3);
 
     return 0;
 }
