@@ -137,9 +137,11 @@ Zacznijmy od napisania scenariusza działania programu - algorytmu głównego.
 
 3. Program dodaje do siebie odpowiednie elementy wektorów `v1` i `v2` a wynik zapisuje do odpowiednich elementów wektora `v3`, zgodnie z wzorem:
    $$v_3 = [v_{1,0}+v_{2,0}, v_{1,1}+v_{2,1}, \ldots, v_{1,n}+v_{2,n}]$$,
+   ![](http://latex.codecogs.com/svg.latex?v_3%20%3D%20%5Bv_%7B1%2C0%7D&plus;v_%7B2%2C0%7D%2C%20v_%7B1%2C1%7D&plus;v_%7B2%2C1%7D%2C%20%5Cldots%2C%20v_%7B1%2Cn%7D&plus;v_%7B2%2Cn%7D%5D)
 
    lub w innym zapisie:
    $$v_{3,i} = v_{1,i}+v_{2,i}$$ dla $$i \in 0,1,\ldots, n$$.
+   ![](http://latex.codecogs.com/svg.latex?v_%7B3%2Ci%7D%20%3D%20v_%7B1%2Ci%7D&plus;v_%7B2%2Ci%7D%24%24%20%5Ctext%7B%20dla%20%7D%20i%20%5Cin%200%2C1%2C%5Cldots%2C%20n)
 
 4. Program zapisuje wartości wektora `v3` do pliku wynikowego.
 
@@ -548,6 +550,8 @@ Sugeruję, że wszyscy powinni w ramach samodzielnego ćwiczenia napisać progra
 Iloczyn skalarny wektorów zdefiniowany jest wzorem:
 
 $$s = \sum\limits_{i=0}^{n} v_{1,i} \cdot v_{2,i}$$
+
+<img src="http://latex.codecogs.com/svg.latex?s%20%3D%20%5Csum%5Climits_%7Bi%3D0%7D%5E%7Bn%7D%20v_%7B1%2Ci%7D%20%5Ccdot%20v_%7B2%2Ci%7D" />
 
 co w języku C może zostać zapisane:
 
