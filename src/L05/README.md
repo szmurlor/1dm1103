@@ -1,8 +1,8 @@
-WORK IN PROGRESS!
+> WORK IN PROGRESS!
 
 :-) 
 
-Wskaźniki.
+## Wskaźniki.
 
 ```c
 #include <stdio.h>
@@ -21,6 +21,8 @@ int main()
 
 1. Ułożenie w pamięci
 2. Wartości
+
+![Wskazniki](wskazniki.png)
 
 A teraz zagadka. Co to jest?
 
@@ -100,7 +102,11 @@ int main() {
 }
 ```
 
-Struktury. Jeszcze raz struktury.
+## Struktury. Jeszcze raz struktury.
+
+Na początek jak są przechowywane struktury.
+
+![Struktury](struktura.png)
 
 ```c
 #include <stdio.h>
@@ -169,6 +175,9 @@ int main()
 }
 ```
 
+## Obsługa napisów z pliku
+
 Wczytajmy strukturę danych o studentach z pliku CSV.
 
-`strtok`
+`strtok` - dzieli napis na kolumny, nieodracalnie go niszcząc :-) - wstawiając zera w miejscu wystapienia separatora
+`fgets` - wczytuje całą linię z pliku do bufora znaków (tablica w pamięci, np.: `char *bufor[255]`)
