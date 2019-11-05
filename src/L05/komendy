@@ -1,0 +1,62 @@
+   36  git
+   37  pwd
+   38  cd src
+   39  ls -la
+   40  cc mystrlen.c -o mystrlen
+   41  ./mystrlen 
+   42  ./mystrlen akuku
+   43  ./mystrlen akuku ala
+   44  ./mystrlen "akuku ala"
+   45  cc mystrlen.c -o mystrlen
+   46  ./mystrlen "akuku ala"
+   47  cc mystrlen.c -o mystrlen
+   48  ./mystrlen "akuku ala"
+   49  cc mystrlen.c -o mystrlen
+   50  ./mystrlen "akuku ala"
+   51  cc mystrlen.c -o mystrlen
+   52  ./mystrlen "akuku ala"
+   53  cc mystrlen.c -o mystrlen
+   54  ./mystrlen "akuku ala"
+   55  cc mystrlen.c -o mystrlen
+   56  ./mystrlen "akuku ala"
+   57  ./mystrlen "akuku ala" drugiego
+   58  cc funkcje_wskazniki.c 
+   59  ./a.out 
+   60  cc funkcje_wskazniki.c 
+   61  ./a.out 
+   62  cc funkcje_wskazniki.c 
+   63  ./a.out 
+   64  cc zabawa_wskaznikami.c 
+   65  ./a.out 
+   66  cc zabawa_wskaznikami.c 
+   67  ./a.out 
+   68  ls
+   69  cc struktury.c 
+   70  cc struktury.c -o student
+   71  ls
+   72  ./student 
+   73  cc struktury.c -o student
+   74  ./student 
+   75  cc struktury.c -o student
+   76  ./student 
+   77  cc struktury.c -o student
+   78  ./student 
+   79  cc struktury.c -o student
+   80  ./student 
+   81  cc struktury.c -o student
+   82  ./student 
+   83  cc struktury.c -o student
+   84  ./student 
+   85  cc struktury.c -o student
+   86  ./student 
+   87  cc struktury.c -o student
+   88  ./student 
+   89  cc struktury.c -o student
+   90  ./student 
+   91  cc struktury.c -o student
+   92  ./student 
+   93  cc struktury.c -o student
+   94  ./student 
+   95  cc struktury.c -o student
+   96  ./student 
+   97  history
