@@ -8,4 +8,13 @@ Aby wyświetlić materiały z zajęć należy kliknąć na "niebieski link src",
 [Seminarium 3](src/L03)  
 [Seminarium 4](src/L04)  
 [Seminarium 5](src/L05)  
-[Seminarium 6](src/L06) *(jeszcze nie gotowe)* 
+[Seminarium 6](src/L06) *(jeszcze nie gotowe)*  
+Seminarium 7  
+Seminarium 8 << 45 minutowy SPRAWDZIAN (bedzie trzeba napisac program na komputerze)  
+Seminarium 9  
+Seminarium 10  
+Seminarium 11  
+Seminarium 12  
+Seminarium 13  
+Seminarium 14  
+Seminarium 15 << 1:30 minutowy sprawdzian (bedzie trzeba napisac kilka programow)  
