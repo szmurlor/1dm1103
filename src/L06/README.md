@@ -65,6 +65,10 @@ int oblicz_srednia_calkowita(struct Student tab[50], int n) {
     ...
 }
 
+int posortuj_malejaco(FILE *fin, struct Student tab[50], int n) {
+    ...
+}
+
 ```
 
 
