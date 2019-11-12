@@ -7,4 +7,5 @@ Aby wyświetlić materiały z zajęć należy kliknąć na "niebieski link src",
 [Seminarium 2](src/L02)  
 [Seminarium 3](src/L03)  
 [Seminarium 4](src/L04)  
-[Seminarium 5](src/L05) *(jeszcze nie gotowe)* 
+[Seminarium 5](src/L05)  
+[Seminarium 6](src/L06) *(jeszcze nie gotowe)* 
