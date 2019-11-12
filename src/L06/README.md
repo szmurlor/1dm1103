@@ -1,7 +1,129 @@
 1. Struktury. Struktura zawierająca studentów i tablicę ocen.
 
+Struktura o statycznym rozmiarze.
+```c
+struct Student {
+	char imie[50];
+	char nazwisko[50];
+	char nr_albumu[50];
+	float srednia;
+	int liczba_ocen;
+	float oceny[20];
+	int ects[20];
+	char przedmioty[20][50];
+	char kto_wystawil[20][50];
+};	
+```
+Teraz napiszemy program, który z poniższego pliku wczyta informacje o studentach obliczy dla każdego średnią i wyświetli średnią całkowitą.
 
-2. Czytanie z pliku. Zabezpieczanie programu przed błędami użytkownika. Ćwiczenie wskaźników do zmiennych.
+```
+3
+Jan Kowalski 234567
+4
+Matematyka dyskretna;4.5;4;Prof.Sasin
+Podstawy informatyki;3.0;2;Prof.Starzyński
+Fizyka;3.0;4;Prof.Starzyński
+Język obcy;5.0;2;Prof.Słonimska
+Aleksander Wielki 234568
+2
+Matematyka dyskretna;5.0;4;Prof.Sasin
+Podstawy informatyki;2.0;2;Prof.Starzyński
+Maria-Curie Skłodowska 234569
+3
+Matematyka dyskretna;5.0;4;Prof.Sasin
+Podstawy informatyki;2.0;2;Prof.Starzyński
+Teoria obwodów i sygnalów;4.0;4;Prof.Osowski
+```
+
+W trakcie pisania postaramy się najlepiej jak się da zabezpieczać program przed ewentualnymi błędami. Użyjemy funkcji:
+
+```
+fopen
+strtok
+fgets
+fopen
+strcpy
+strncpy
+```
+
+Napiszemy następujące funkcje:
+
+```c
+int wczytaj_studentow(FILE *fin, struct Student tab[50]) {
+    ...
+}
+
+int zapisz_zapisz(FILE *fin, struct Student tab[50], int n) {
+    ...
+}
+
+int oblicz_srednie(struct Student tab[50], int n) {
+    ...
+}
+
+int oblicz_srednia_calkowita(struct Student tab[50], int n) {
+    ...
+}
+
+```
+
+
+
+2. Podzielimy program na pliki. Wprowadzimy pliki nagłówkowe `(*.h)` i źródłowe `(*.c)`. Dodatkowo, aby nasz program było łatwiej kompilować utworzymy `Makefile`a.
+
+Pliki ngałówkowe zawierają tylko **deklaracje** a pliki źródłowe **definicje** funkcji i zmiennych. Deklaracje to tylko opis jak będziemy mogli rozmawiać z funkcją (czyli jakich argumentów będzie funkcja potrzebować) oraz jakiego typu wartości funkcja będzie zwracać. Definicja to opis jak ma funkcja działać.
+
+```
+Makefile
+main.c
+baza.c
+baza.h
+test.c
+```
+
+Będziemy teraz wpisywać komendę:
+
+```bash
+make
+```
+
+3. Struktura dynamiczna. Teraz napiszemy ten sam program ale w wersji dynamicznej.
+
+```c
+struct Student {
+	char *imie;
+	char *nazwisko;
+	char *nr_albumu;
+	float srednia;
+	int liczba_ocen;
+	float *oceny;
+	char **przedmioty;
+	char **kto_wystawil;
+};	
+```
+
+Struktura `Student` z zagnieżdżoną strukturą.
+
+```c
+struct Ocena {
+	float oceny;
+	char *przedmiot;
+	char *kto_wystawil;
+};
+
+struct Student {
+	char *imie;
+	char *nazwisko;
+	float srednia;
+	int liczba_ocen;
+	struct Ocena *oceny;
+};	
+```
+
+Materiał fakultatywny:
+----------------------
+
+1. Czytanie z pliku. Zabezpieczanie programu przed błędami użytkownika. Ćwiczenie wskaźników do zmiennych.
 
 ```c
 // czyta z pliku (albo z stdin gdy nie podano nazwy) pary liczb (u,i)
@@ -41,6 +163,7 @@ int main( int argc, char *argv[] ) {
 }
 ```
 
+2. Test funkcji wczytującej.
 
 ```c
 // TYLKO TEST FUNKCJI WCZYTUJĄCEJ !!!
