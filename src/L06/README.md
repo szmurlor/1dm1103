@@ -1,5 +1,23 @@
 1. Zaczęliśmy nasze zajęcia od standardowego 'boilerplatea' czyli plików nagłówkowych i funkcji main. Zadeklarowaliśmy struktrę student:
 
+```c
+struct Student {
+    char imie[50];
+    char nazwisko[50];
+    char nr_albumu[10];
+
+    float srednia;
+
+    int liczba_ocen;
+    float oceny[20];
+    int ects[20];
+    char przedmioty[20][50];
+    char kto_wystawil[20][50];
+};
+```
+
+Przyjrzyjmy się strukturze: imie, nazwisko i nr_albumu to napisy, które mogą mieć maksymalnie po 49 znaków (pamiętamy o `\0` na końcu :-)). Potem srednia - liczba zmienno przecinkowa, liczba_ocen - liczba całkowita wskazująca ile mamy wczytanych ocen z przedmiotó w kolejnych tablicach struktury. I, tak: tablica z miejscem na maksymalnie 20 ocen, 20 pól dotyczących punktów ects oraz po dwadzieścia napisów przedmioty oraz kto_wystwaił daną oceną. Każdy napis `przedmiot` i `kto_wystawil` moze analogicznie zawierać maksymalnie 49 znaków. 
+
 2. Potem ustaliliśmy następujący scenariusz programu:
  
  * wczytujemy informacje o studentach i ich ocenach z pliku tekstowego,
@@ -22,7 +40,52 @@
     printf("Wczytałem z pliku liczbę: %d\n", n);
 ```
 
-W pierwszych dwóch linijkach wczytujemy linijkę z pliku za pomocą funkcji `fgets`, któa wczyta całą linijkę do tablicy znaków wskazywanej przez wskaźnik!: `bufor`. Liczba `254` oznacza maksymalną długość jaką `fgets` może wczytać do bufora. POtem wyświetlamy na ekranie oryginalny napis (Można zwrócić uwagę, że napis ten zawiera również końcowy zna nowej linii.)
+W pierwszych dwóch linijkach wczytujemy linijkę z pliku za pomocą funkcji `fgets`, któa wczyta całą linijkę do tablicy znaków wskazywanej przez wskaźnik!: `bufor`. Liczba `254` oznacza maksymalną długość jaką `fgets` może wczytać do bufora. Potem wyświetlamy na ekranie oryginalny napis (Można zwrócić uwagę, że napis ten zawiera również końcowy znak nowej linii.) Następnie konwertujemy napis w tej linijce na liczbę całkowitą typu `int` za pomocą funkcji `atoi`. W ostatniej linijce wyświetlamy wartość typu `%d` czyli liczbę całkowitą zinterpretowaną. Wyświetlając na ekranie sprawdzamy, czy nasz program poprawnie zinterpretował liczbę. 
+
+Proszę zwrócić uwagę, że naszą funkcję wczytującą pisaliśmy przyrostowo, po kawałku, komiplując, uruchamiajać, edytując, kompilując, uruchamiając, itd. Dzięki temu było nam łatwiej wychwytywać ewentualne problemy i błędy w trakcie pisania. 
+
+5. Przyjrzyjmy się dwum metodom interpretującym dane w poszczególnych linijkach:
+
+a) metoda z uzyciem funkcji `sscanf()`, która potrafi 'wyłuskać' z napisu określone w napisie definiującym format (tzw. ang. 'format string') typy zmiennych:
+
+```c
+sscanf(bufor, "%s %s %s", studenci[i].imie, studenci[i].nazwisko, studenci[i].nr_albumu);
+```
+W powyższej linijce funkcja `sscanf`, z napisu prechowywanego w zmiennej `bufor` wyciągnie trzy wyrazy (`%s %s %s`) i zapisze je do tablic znakowych imie, naziwsko i nr_albumu 'i-tej' struktury tablicy `studenci`.
+
+Zwróciliśmy ponownie uwagę, że powyższy zapis jest równoważny zapisowi:
+
+```c
+sscanf(bufor, "%s %s %s", &studenci[i].imie[0], studenci[i].nazwisko, studenci[i].nr_albumu);
+```
+w którym jawnie podajemy, że chcemy zapisać wyniki w miejsca wskazywane przez adresy (`&`) pierwszych elementów `...[0]` tablic `imie`, `nawisko` i `nr_albumu`.
+
+b) Drugi sposob interpretacji danych w poszczególnych linijkach opierał się na wykorzystaniu funkcji `strtok`. `Strtok` potrafi podzielić napis na kolumny względem podanego jako argument rozdzielnika. Używając jej musimy być bardzo ostrożni, ponieważ niszczy ona oryginalny napis wstawiając znak `\0` w miejscu wystąpienia znaku rozdzielającego. Za pierwszym razem gdy wywołamy funkcję `strtok` i podamy wskaxnik do początku napisu wstawi ona `\0` w miejsce pirwszego wystąpienia rozdzielnika i zwróci jako swój wynik wskaźnik do początku napisu - czyli teraz to już będzie nie oryginalny napis ale pierwsza kolumna, bo 'nowy - ten sam' napis będzie się kończył w miejscu starego rozdzielnika. Za drugim, i kolejnymi razami wywołamy naszą funkcję podając jako pierwszy argument wartość `NULL`, któa informuje `strtok` aby kontynuował szukanie rozdzielników w dalszej części ostatnio przekazanego napisu. Gdy `strtok` nie znajdzie kolejnej kolumny to zwraca wartość NULL zamiast wskaźnika. 
+
+Przykład:
+Załóżmy napis:  
+`char napis = "Ala ma; kota ;a kot ma Ale;";`
+Po pierwszym wywołaniu `strtok(napis,";");`, zawartość napisu będzie równa:  
+`char napis = "Ala ma\0 kota ;a kot ma Ale;";`
+a `strtok` zwróci: `&napis[0]`
+Po drugim wywołaniu `strtok(NULL,";");`, zawartość napisu będzie równa:  
+`char napis = "Ala ma\0 kota \0a kot ma Ale;";`
+a `strtok` zwróci: `&napis[7]`
+Po trzecim wywołaniu `strtok(NULL,";");`, zawartość napisu będzie równa:  
+`char napis = "Ala ma\0 kota \0a kot ma Ale\0";`
+a `strtok` zwróci: `&napis[14]`
+Po czwartym wywołaniu `strtok(NULL,";");`, zawartość napisu będzie nadal równa:  
+`char napis = "Ala ma\0 kota \0a kot ma Ale\0";`
+a `strtok` zwróci: `NULL`
+
+6. Kolejną rzeczą o któej musiliśmy pamiętać używając `strtok` byla konieczność skopiowania napisu z bufora do pól struktury (przedmioty i kto_wystawil). Użyliśmy do tego funkcji `strcpy`.
+
+```c
+    strcpy(studenci[i].przedmioty[o], w);
+```
+gdzie `w` to wskaźnik do kolejnej kolumny zwrócony przez `strtok`.
+
+7. Po napisaniu program wczytujący wyglądał następująco.
 
 ```c
 #include <stdio.h>
@@ -100,14 +163,31 @@ int main(int argc, char *argv[]) {
 
 ```
 
+8. W dalszej części zajęć rozmawialiśmy o **dyrektywach preprocesora**:
+```c
+#define DOWOLNANAZWA dowolna wartosc
+```
+które służą do sterowania procesem kompilacji.
 
+Użyliśmy również 
+
+```c
+#ifdef DEBUG
+cos tam
+#endif
+```
+które oznacza, że fragment kodu wewnątrz bloku `ifdef` będzie uwzględniony w procesie kompilacji tylko wtedy jeżeli będzie zdefiniowana stała `DEBUG`.
+
+9. Na koniec napisaliśmy funkcję wypisującą na ekranie.
+
+10. Cały program z pierwszej części wyglądał tak:
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 /* #define DEBUG */
-
-// #define PDEBUG(x) printf(x);
 
 struct Student {
     char imie[50];
@@ -203,7 +283,25 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+```
 
+11. Dalej postanowiliśmy stworzyć strukturę zagnieżdżoną wprwadzjąc prostą **refaktoryzację** kodu. Refaktoryzacja to proces modyfikacji kodu, który zmienia jego wewnętrzne działanie, ale nie zmienia jego funkcjonalności z punktu widzenia użytkownika. Na zewnątrz nie widać ządnej różnicy - program działa tak samo. Wewnętrznie wykorzystuje tylko inne struktury danych i funkcje. (UWAGA! Musicie wiedzieć co oznacza refaktoryzacja i musicie umieć podać jakiś prosty przykład, ponieważ na zaliczeniu mogą pojawić się o to pytania!)
+
+12. Na sam koniec naszego spotkania, w szalonym tempie podzieliśmy nasz plik `main.c` na trzy mniejsze pliki:
+
+```
+main.c
+bibl.c
+bibl.h
+```
+
+W ten sposob w osobnyh plikach znalazły się osobne funkcjonalności naszej aplikacji - zaczęliśmy pisać proste moduły :-). Proces kompilacji programu skłądającego się z dwóch plikó wymagał od nas podania obydwu plików źródłowych tak:
+
+```bash
+cc main.c bibl.c -o main
+```
+
+c.d.n.
 
 1. Struktury. Struktura zawierająca studentów i tablicę ocen.
 
