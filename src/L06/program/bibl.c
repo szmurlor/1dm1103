@@ -3,6 +3,27 @@
 #include <string.h>
 
 #include "bibl.h"
+/*
+Uwaga! Zadanie domowe:
+
+Proszę napisać i użyć w main() funkcję, która dla każdego studenta obliczy wartość średniej ważonej punktami ECTS 
+i zapisze ją w polu 'srednia' struktury danego studenta.
+
+Dodatkowo, proszę zmodyfikować funkcję wypisującą na ekranie bazę danych o studentach tak aby
+wyświetlała również informację o średniej ważonej punktami ECTS, np. tak:
+
+Maria Curie Skłodowska, 234589
+    Matematyka: 5.0 (4 ECTS)
+    Język obcy: 4.0 (2 ECTS)
+    Średnia ważona ECTS: 4.666
+
+
+Średnia ważona ECTS powinna być obliczona ze wzoru:
+srednia = suma( ocena * ects ) / suma(ects)
+
+Czyli dla powyzszego przykładu:
+srednia = (5*4 + 4*2)/6 = 4.666
+*/
 
 int wczytaj(char *fname, struct Student studenci[]) {
     int n = 0, i, o;
