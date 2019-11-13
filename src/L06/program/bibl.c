@@ -23,6 +23,9 @@ srednia = suma( ocena * ects ) / suma(ects)
 
 Czyli dla powyzszego przykładu:
 srednia = (5*4 + 4*2)/6 = 4.666
+
+Zastanów się jakie argumenty nowa funkcja powinna dostawać i ewentualnie czy potrzebuje 
+zwracać jakikolwiek wynik za pomocą 'return'.
 */
 
 int wczytaj(char *fname, struct Student studenci[]) {
