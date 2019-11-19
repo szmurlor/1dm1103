@@ -30,19 +30,41 @@ zwracać jakikolwiek wynik za pomocą 'return'.
 
 int wczytaj(char *fname, struct Student studenci[]) {
     int n = 0, i, o;
-    FILE *fin = fopen(fname, "r");
+    FILE *fin;
     char bufor[255];
     char *w;
+    int p;
+
+    if ((fin = fopen(fname, "r")) == NULL) {
+        printf("Nie mogę otworzyć pliku %s\n", fname);
+        exit(2);
+    }
 
     w = fgets(bufor, 254, fin);
     n = atoi(bufor);
 
     for (i = 0; i < n; i++) {
-        fgets(bufor, 254, fin);
-        sscanf(bufor, "%s %s %s", studenci[i].imie, studenci[i].nazwisko, studenci[i].nr_albumu);
+        if (feof(fin)) {
+            printf("Nieoczekiwane zakończenie pliku %s dla studenta %d (oczekiwałem %d studentów)\n", fname, i, n);
+            exit(3);
+        }
+        if (fgets(bufor, 254, fin) == NULL) {
+            printf("Nie udało mi się wczytać linijki z informację o studencie %s dla studenta %d (oczekiwałem %d studentów)\n", fname, i, n);
+            exit(4);
+        };
+        if (3 != (p = sscanf(bufor, "%s %s %s", studenci[i].imie, studenci[i].nazwisko, studenci[i].nr_albumu))) {
+            printf("Niewłaściwa liczba kolumn w linijce o studencie "
+            "(oczekiwałem 3 słów otrzymałem %d) "
+            " dla studenta %d\n", p, i);
+            exit(4);
+        };
 
-        fgets(bufor, 254, fin);
+        if (fgets(bufor, 254, fin) == NULL) {
+            printf("Oczekiwałem liczby ocen a nastąpił koniec pliku.\n");
+            exit(5);
+        };
         studenci[i].liczba_ocen = atoi(bufor);   
+        studenci[i].srednia = 0;
 
         for (o = 0; o < studenci[i].liczba_ocen; o++) {
             fgets(bufor, 254, fin);
@@ -87,6 +109,11 @@ void oblicz_srednie(struct Student s[], int n) {
             sumaoc += s[i].oceny[j].ocena * s[i].oceny[j].ects;
             sumaects += s[i].oceny[j].ects; 
         } 
-        s[i].srednia = sumaoc / sumaects;
+        if (sumaects == 0)
+            s[i].srednia = 0;
+        else
+            s[i].srednia = sumaoc / sumaects;
+        
+        s[i].srednia = (sumaects == 0 ? 0 : sumaoc / sumaects);
     }
 }

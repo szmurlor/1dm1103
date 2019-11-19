@@ -5,8 +5,14 @@
 
 int main(int argc, char *argv[]) {
     int n;
-    struct Student studenci[20];
+    /*struct Student astudenci[20];*/
+    struct Student *studenci;
+    studenci = (struct Student*) malloc(20 * sizeof(struct Student));
 
+    if (argc < 2) {
+        printf("Użycie programu:\n\t./main [NAZWA PLIKU Z DANYMI]\n");
+        exit(1);
+    }
 
     /* n = wczytaj(argv[1], studenci); */
     n = wczytaj(argv[1], &studenci[0]);

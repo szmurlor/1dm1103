@@ -18,4 +18,5 @@ main: $(OBJS)
 
 test: main
 	./main ../../L06/dane
-	./main ../../L07/dane	
+	#./main
+	#./main ../../L07/dane	
