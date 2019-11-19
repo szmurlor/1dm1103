@@ -1,20 +1,128 @@
+Plan zajęć L07:
+
+1. Rozwiązujemy zadanie.
+2. Omawiamy Makefile i pliki nagłówkowe w kontekście 'include guard' `#ifndef`
+
+```makefile
+CC=gcc
+CFLAGS=-I.
+
+hellomake: hellomake.o hellofunc.o
+     $(CC) -o hellomake hellomake.o hellofunc.o
+```
+
+```makefile
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: hellomake.o hellofunc.o 
+	$(CC) -o hellomake hellomake.o hellofunc.o 
+```
+
+`$<` - pierwszy element z reguły make
+
+```makefile
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+OBJ = hellomake.o hellofunc.o 
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+```
+
+```makefile
+IDIR =../include
+CC=gcc
+CFLAGS=-I$(IDIR)
+
+ODIR=obj
+LDIR =../lib
+
+LIBS=-lm
+
+_DEPS = hellomake.h
+DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+
+_OBJ = hellomake.o hellofunc.o 
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+
+$(ODIR)/%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+.PHONY: clean
+
+clean:
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+```
+3. Zabezpieczamy nasz program przed ewentualnymi błędami (programowanie defensywne https://pl.wikipedia.org/wiki/Programowanie_defensywne, https://en.wikipedia.org/wiki/Defensive_programming, Programowanie ofensywne).
+4. Postaramy się najlepiej jak się da zabezpieczać program przed ewentualnymi błędami. Użyjemy funkcji:
+```
+fopen - będziemy sprawdzać wynik
+strtok - będziemy sprawdząć wynik
+fgets - również wynik
+fclose 
+strcpy - możemy przekrosczyć bufor
+strncpy - nie przekroczymy bufora ale program nie wstawi zera - mogą zostać śmieci.
+```
+5. Rozszerzymy program o sortowanie po średniej (najpierw naiwne - bąbelkowe, potem użyjemy qsort)
+
+6. Przejdziemy do dynamicznej alokacji pamięci. teraz nasza struktura będzie dynamiczna. Wygodnie będzie podzielić nasz program na funkcje tworzące nowe wektory i dodające nowych studentów do tablicy studentów.
+
+Struktura `Student` z zagnieżdżoną strukturą.
+
+```c
+struct Ocena {
+	float oceny;
+	char *przedmiot;
+	char *kto_wystawil;
+};
+
+struct Student {
+	char *imie;
+	char *nazwisko;
+	float srednia;
+	int liczba_ocen;
+	struct Ocena *oceny;
+};	
+```
+
+
 1. Struktury. Struktura zawierająca studentów i tablicę ocen.
 
 Struktura o statycznym rozmiarze.
 ```c
+struct Ocena {
+    float ocena;
+    int ects;
+    char przedmiot[50];
+    char kto_wystawil[50];
+};
+
 struct Student {
-	char imie[50];
-	char nazwisko[50];
-	char nr_albumu[50];
-	float srednia;
-	int liczba_ocen;
-	float oceny[20];
-	int ects[20];
-	char przedmioty[20][50];
-	char kto_wystawil[20][50];
-};	
+    char imie[50];
+    char nazwisko[50];
+    char nr_albumu[10];
+
+    float srednia;
+
+    int liczba_ocen;
+    struct Ocena oceny[20];
+};
 ```
-Teraz napiszemy program, który z poniższego pliku wczyta informacje o studentach obliczy dla każdego średnią i wyświetli średnią całkowitą.
+
+Będziemy dalej pracować na danych przykładowych.
 
 ```
 3
@@ -49,80 +157,7 @@ strncpy
 Napiszemy następujące funkcje:
 
 ```c
-int wczytaj_studentow(FILE *fin, struct Student tab[50]) {
-    ...
-}
 
-int zapisz_zapisz(FILE *fin, struct Student tab[50], int n) {
-    ...
-}
-
-int oblicz_srednie(struct Student tab[50], int n) {
-    ...
-}
-
-int oblicz_srednia_calkowita(struct Student tab[50], int n) {
-    ...
-}
-
-int posortuj_malejaco(FILE *fin, struct Student tab[50], int n) {
-    ...
-}
-
-```
-
-
-
-2. Podzielimy program na pliki. Wprowadzimy pliki nagłówkowe `(*.h)` i źródłowe `(*.c)`. Dodatkowo, aby nasz program było łatwiej kompilować utworzymy `Makefile`a.
-
-Pliki ngałówkowe zawierają tylko **deklaracje** a pliki źródłowe **definicje** funkcji i zmiennych. Deklaracje to tylko opis jak będziemy mogli rozmawiać z funkcją (czyli jakich argumentów będzie funkcja potrzebować) oraz jakiego typu wartości funkcja będzie zwracać. Definicja to opis jak ma funkcja działać.
-
-```
-Makefile
-main.c
-baza.c
-baza.h
-test.c
-```
-
-Będziemy teraz wpisywać komendę:
-
-```bash
-make
-```
-
-3. Struktura dynamiczna. Teraz napiszemy ten sam program ale w wersji dynamicznej.
-
-```c
-struct Student {
-	char *imie;
-	char *nazwisko;
-	char *nr_albumu;
-	float srednia;
-	int liczba_ocen;
-	float *oceny;
-	char **przedmioty;
-	char **kto_wystawil;
-};	
-```
-
-Struktura `Student` z zagnieżdżoną strukturą.
-
-```c
-struct Ocena {
-	float oceny;
-	char *przedmiot;
-	char *kto_wystawil;
-};
-
-struct Student {
-	char *imie;
-	char *nazwisko;
-	float srednia;
-	int liczba_ocen;
-	struct Ocena *oceny;
-};	
-```
 
 Materiał fakultatywny:
 ----------------------
