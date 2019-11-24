@@ -76,6 +76,32 @@ fclose
 strcpy - możemy przekrosczyć bufor
 strncpy - nie przekroczymy bufora ale program nie wstawi zera - mogą zostać śmieci.
 ```
+
+## Klucz do zadania domowego :-)
+
+Zadanie zostało wgrane na githuba do pliku zadanie_zaszyfrowane.txt. Zadanie zostało aszyfrowane banalnym szyfrem Cezara (https://pl.wikipedia.org/wiki/Szyfr_Cezara) z przesunięciem o JEDEN do przodu. Uwaga, szyfr został zrobiony w ten sposób, że przesuwane o jeden w tablicy ASCII są tylko znaki z alfabetu angielskiego czyli 'a',...,'z' oraz 'A',...,'Z' z pominięciem polskich znaków! One pozostały w 'zaszyfrowanym' pliku bez zmian. Innymi słowy 'a' staje się w nowym pliku 'b', 'A' staje się 'B', a litera 'z' i 'Z' stają się odpowednio 'a' i 'A'. Aby poznać treść zadania nalezy najpierw napisać sobie programik do odszyfrowywania. Proszę nie udostępniać tresci zadania innym osobom z grupy! Potraktujmy to jako dobrą zabawę (mam nadzieję :-)).
+
+Oto szkielet programu odszyfrywującego:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv) {
+    FILE *fin = fopen(argv[1],"r");
+    char c;
+    char c_po_odszyfrowaniu;
+    while ((c = fgetc(fin)) != EOF) {
+	  /* ... tutaj napiszcie program odszyfrowujący ... */
+	  printf("%c",c_po_odszyfrowaniu);
+    }
+    fclose(fin);
+}
+```
+
+
+To zrobimy na następnych zajęciach... :-)
+
 5. Rozszerzymy program o sortowanie po średniej (najpierw naiwne - bąbelkowe, potem użyjemy qsort)
 
 6. Przejdziemy do dynamicznej alokacji pamięci. teraz nasza struktura będzie dynamiczna. Wygodnie będzie podzielić nasz program na funkcje tworzące nowe wektory i dodające nowych studentów do tablicy studentów.
