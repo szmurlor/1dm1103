@@ -3,30 +3,6 @@
 #include <string.h>
 
 #include "bibl.h"
-/*
-Uwaga! Zadanie domowe:
-
-Proszę napisać i użyć w main() funkcję, która dla każdego studenta obliczy wartość średniej ważonej punktami ECTS 
-i zapisze ją w polu 'srednia' struktury danego studenta.
-
-Dodatkowo, proszę zmodyfikować funkcję wypisującą na ekranie bazę danych o studentach tak aby
-wyświetlała również informację o średniej ważonej punktami ECTS, np. tak:
-
-Maria Curie Skłodowska, 234589
-    Matematyka: 5.0 (4 ECTS)
-    Język obcy: 4.0 (2 ECTS)
-    Średnia ważona ECTS: 4.666
-
-
-Średnia ważona ECTS powinna być obliczona ze wzoru:
-srednia = suma( ocena * ects ) / suma(ects)
-
-Czyli dla powyzszego przykładu:
-srednia = (5*4 + 4*2)/6 = 4.666
-
-Zastanów się jakie argumenty nowa funkcja powinna dostawać i ewentualnie czy potrzebuje 
-zwracać jakikolwiek wynik za pomocą 'return'.
-*/
 
 int wczytaj(char *fname, struct Student studenci[]) {
     int n = 0, i, o;
@@ -49,7 +25,7 @@ int wczytaj(char *fname, struct Student studenci[]) {
             exit(3);
         }
         if (fgets(bufor, 254, fin) == NULL) {
-            printf("Nie udało mi się wczytać linijki z informację o studencie %s dla studenta %d (oczekiwałem %d studentów)\n", fname, i, n);
+            printf("Nie udało mi się wczytać linijki z informacją o studencie %s dla studenta %d (oczekiwałem %d studentów)\n", fname, i, n);
             exit(4);
         };
         if (3 != (p = sscanf(bufor, "%s %s %s", studenci[i].imie, studenci[i].nazwisko, studenci[i].nr_albumu))) {
@@ -91,8 +67,6 @@ void wypisz_na_ekran(struct Student s[], int n) {
     for (i=0; i < n; i++) {
         printf("%s %s - %s\n", s[i].imie, s[i].nazwisko, s[i].nr_albumu);
         for (j=0; j < s[i].liczba_ocen; j++) {
-            // o = s[i].oceny[j];
-            // printf("\t%s: %.0f (%d ECTS)\n", o.przedmiot, o.ocena, o.ects);
             o = &s[i].oceny[j];
             printf("\t%s: %.1f (%d ECTS)\n", o->przedmiot, o->ocena, o->ects);
         } 
