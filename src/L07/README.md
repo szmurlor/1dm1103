@@ -79,9 +79,9 @@ strncpy - nie przekroczymy bufora ale program nie wstawi zera - mogą zostać ś
 
 ## Klucz do zadania domowego :-)
 
-Zadanie zostało wgrane na githuba do pliku zadanie_zaszyfrowane.txt. Zadanie zostało aszyfrowane banalnym szyfrem Cezara (https://pl.wikipedia.org/wiki/Szyfr_Cezara) z przesunięciem o JEDEN do przodu. Uwaga, szyfr został zrobiony w ten sposób, że przesuwane o jeden w tablicy ASCII są tylko znaki z alfabetu angielskiego czyli 'a',...,'z' oraz 'A',...,'Z' z pominięciem polskich znaków! One pozostały w 'zaszyfrowanym' pliku bez zmian. Innymi słowy 'a' staje się w nowym pliku 'b', 'A' staje się 'B', a litera 'z' i 'Z' stają się odpowednio 'a' i 'A'. Aby poznać treść zadania nalezy najpierw napisać sobie programik do odszyfrowywania. Proszę nie udostępniać tresci zadania innym osobom z grupy! Potraktujmy to jako dobrą zabawę (mam nadzieję :-)).
+Zadanie zostało wgrane na githuba do pliku zadanie_zaszyfrowane.txt. Opis zadania został zaszyfrowany banalnym szyfrem Cezara (https://pl.wikipedia.org/wiki/Szyfr_Cezara) z przesunięciem o JEDEN do przodu. Uwaga, szyfr został zrobiony w ten sposób, że przesuwane o jeden w tablicy ASCII są tylko znaki z alfabetu angielskiego czyli 'a',...,'z' oraz 'A',...,'Z' z pominięciem polskich znaków, które pozostały w 'zaszyfrowanym' pliku bez zmian. Innymi słowy 'a' staje się w nowym pliku 'b', 'A' staje się 'B', a litera 'z' i 'Z' stają się odpowiednio 'a' i 'A' (następuje rotacja). Aby poznać treść zadania należy najpierw napisać sobie programik do odszyfrowywania. Proszę nie udostępniać jawnej tresci zadania innym osobom z grupy! Potraktujmy to jako dobrą zabawę (mam nadzieję :-)).
 
-Oto szkielet programu odszyfrywującego:
+Oto szkielet programu odszyfrowującego:
 
 ```c
 #include <stdio.h>
@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
     char c;
     char c_po_odszyfrowaniu;
     while ((c = fgetc(fin)) != EOF) {
-	  /* ... tutaj napiszcie program odszyfrowujący ... */
+	  /* ... tutaj napiszcie kod odszyfrowujący u mnie ma on 10 linijek  ... */
 	  printf("%c",c_po_odszyfrowaniu);
     }
     fclose(fin);
