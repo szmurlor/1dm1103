@@ -1,6 +1,161 @@
 1. Rozszerzymy program o sortowanie po średniej (najpierw naiwne - bąbelkowe, potem użyjemy qsort)
 
-2. Przejdziemy do dynamicznej alokacji pamięci. teraz nasza struktura będzie dynamiczna. Wygodnie będzie podzielić nasz program na funkcje tworzące nowe wektory i dodające nowych studentów do tablicy studentów.
+    Dodamy funkcję `sortuj_babelkowo(...)` do pliku nagłówkowego oraz pliku źródłowego. Chcemy liczyć ile wykonamy porównań wartości. (counter++)
+
+    Póżniej dodamy dwie wersje funkcji sortującej: rosnąco i malejąco.
+    
+    Musieliśmy dodać nowy wpis do pliku nagłówkowego, skopiować i wkleić funkcje wykonując drobną zmianę - MAMY ZDUPLIKOWANY KOD. To jest zła metodyka programowania! Powinniśmy to poprawić.
+    
+2. Dodamy argument wskazujący czy sortować malejąco czy rosnąco. Tylko jak to zautomatyzować? Zacznijmy od wersji naiwnej - czyli `if ... else`.
+
+```c
+/* 
+    kierunek = 1 oznacza sortowanie rosnaco
+    kierunek = -1 oznacza sortowanie malejaco
+ */
+int sortuj_babelkowo_kierunek(struct Student *studenci, int n, int kierunek) {
+    int changed = 0;
+    int counter = 0;
+    struct Student tmp;
+    int i, j;
+
+    for (i=0; i < (n-1); i++) {
+        for (j = 0; j < (n-1); j++) {
+            counter++;
+            if (kierunek == 1) {
+                if (studenci[j].srednia < studenci[j+1].srednia) {
+                    changed = 1;
+                    tmp = studenci[j];
+                    studenci[j] = studenci[j+1];
+                    studenci[j+1] = tmp;
+                }
+            } else {
+                if (studenci[j].srednia > studenci[j+1].srednia) {
+                    changed = 1;
+                    tmp = studenci[j];
+                    studenci[j] = studenci[j+1];
+                    studenci[j+1] = tmp;
+                }
+            }
+        }
+        if (changed == 0)
+            break;
+    }
+
+    return counter;
+}
+```
+
+   Problemy: mamy zduplikowany kod - musimy gdzie w komentarzu opisać co znaczy -1 i 1.
+   
+   Najpierw poprawmy konieczność pamiętania `-1` i `1`. Dodamy stałe wykorzystując makrodyrektywy `#define`. Poniważ wartosci te będziemy wykorzystywać zarówno w naszym pliku `bibl.c` jak i `main.c` najlepszym miejscem będzie zatem plik nagłówkowy `bibl.h`.
+   
+```c
+#define ROSNACO 1
+#define MALEJACO -1
+```
+   
+   Druga spraw to zduplikowany kod. Hmmm... użyjmy do pozbycia się zduplikowanego kodu trochę matematyki :-). Przyjmijmy dane, jak poniżej:
+   
+```   
+   Ala Kowalska: 3.5
+   Jak Ronowski: 2.0
+``` 
+
+   Gdy odejmiemy `3.5` - `2.0` to otrzymamy wartość dodatnią gdy pierwszy element jest większy od drugiego. Zatem wyrażenie:
+   
+```c
+	if (studenci[i].srednia > studenci[i].srednia) { ...	}
+```
+
+    możemy zastąpić
+    
+```c
+	if ((studenci[i].srednia - studenci[i].srednia) > 0) { ...	}
+```
+    a teraz idąc dalej, aby odwrócić porównanie możemy analogicznie:
+
+```c
+	if (studenci[i].srednia < studenci[i].srednia) { ...	}
+```
+
+    możemy zastąpić
+    
+```c
+	if ((studenci[i].srednia - studenci[i].srednia) < 0) { ...	}
+```
+
+    albo jeszcze inaczej :-):
+
+```c
+	if (studenci[i].srednia < studenci[i].srednia) { ...	}
+```
+
+    możemy zastąpić
+    
+```c
+	if ( -1 * (studenci[i].srednia - studenci[i].srednia) > 0) { ...	}
+```
+
+   Jak można zauwazyć, teraz możemy łatwo sterować kierunkiem sortowania użyając zmiennej kierunek, która specjalnie przyjmuje wartości `1` i `-1`. Zatem ostatecznie możemy napisać:
+   
+```c
+/* 
+    kierunek = 1 oznacza sortowanie rosnaco
+    kierunek = -1 oznacza sortowanie malejaco
+ */
+int sortuj_babelkowo_kierunek(struct Student *studenci, int n, int kierunek) {
+    int changed = 0;
+    int counter = 0;
+    struct Student tmp;
+    int i, j;
+
+    for (i=0; i < (n-1); i++) {
+        for (j = 0; j < (n-1); j++) {
+            counter++;
+            
+   	    if ( kierunek*(studenci[j+1].srednia - studenci[j].srednia) > 0) {
+	        changed = 1;
+	        tmp = studenci[j];
+	        studenci[j] = studenci[j+1];
+	        studenci[j+1] = tmp;
+	    }
+        }
+        if (changed == 0)
+            break;
+    }
+
+    return counter;
+}
+```   
+   
+3. Teraz poprawimy nasze sortowanie i użyjemy lepszego algorytmu - sortowanie przez wybieranie.
+
+```c
+int sortuj_wybieranie_kierunek(struct Student *studenci, int n, int kierunek) {
+    int counter = 0;
+    struct Student tmp;
+    int imax = 0;
+    int i, j;
+
+    for (i=0; i < (n-1); i++) {
+        imax = i;
+        for (j = i+1; j < n; j++) {
+            counter++;
+            if (kierunek * (studenci[j].srednia - studenci[imax].srednia) > 0) {
+                imax = j;
+            }
+        }
+        tmp = studenci[i];
+        studenci[i] = studenci[imax];
+        studenci[imax] = tmp;
+    }
+
+    return counter;
+}
+```
+
+4. Przejdziemy do pełnej dynamicznej alokacji pamięci. teraz nasza struktura będzie dynamiczna. Wygodnie będzie podzielić nasz program na funkcje tworzące nowe wektory i dodające nowych studentów do tablicy studentów.
 
 
 Struktura `Student` z zagnieżdżoną strukturą.
@@ -20,6 +175,13 @@ struct Student {
 	struct Ocena *oceny;
 };	
 ```
+
+Scenariusz:
+* najpierw napiszemy będziemy `mallocować` wszędzie w funkcji wczytującej.
+* Potem napiszemy funkcję, która będzie tworzyć studenta na podstawie przekazanych danych.
+* Potem napiszemy funkcję, która będzie zwalniać pamięć :-) `free`.
+
+5. Sprawdźmy ile zajmuje pamięci nasz program po i przed poprawkami. Do sprawdzania pamięci uzyjemy narzędzia jakim jest `valgrind`.
 
 Będziemy dalej pracować na danych przykładowych.
 
