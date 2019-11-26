@@ -17,6 +17,6 @@ main: $(OBJS)
 	cc $< -c 
 
 test: main
-	./main ../../L06/dane
+	./main dane_sortowanie_1
 	#./main
 	#./main ../../L07/dane	

@@ -59,6 +59,13 @@ int wczytaj(char *fname, struct Student studenci[]) {
     return n;
 }
 
+void wypisz_na_ekran_srednie(struct Student s[], int n) {
+    int i;
+    struct Ocena *o;
+    for (i=0; i < n; i++) {
+        printf("%s %s - %s = %f\n", s[i].imie, s[i].nazwisko, s[i].nr_albumu, s[i].srednia);
+    }
+}
 
 void wypisz_na_ekran(struct Student s[], int n) {
     int i,j;
@@ -90,4 +97,80 @@ void oblicz_srednie(struct Student s[], int n) {
         
         s[i].srednia = (sumaects == 0 ? 0 : sumaoc / sumaects);
     }
+}
+
+void sortuj_babelkowo(struct Student s[], int n) {
+    int i,j;
+    struct Student tmp;
+
+    for (i=0; i < (n-1); i++) {
+        for (j=0; j < (n-1); j++) {
+            if (s[j].srednia < s[j+1].srednia) {
+                tmp = s[j];
+                s[j] = s[j+1];
+                s[j+1] = tmp;
+            }
+        }
+    }
+}
+
+void sortuj_babelkowo_rosnaco(struct Student s[], int n) {
+    int i,j;
+    struct Student tmp;
+
+    for (i=0; i < (n-1); i++) {
+        for (j=0; j < (n-1); j++) {
+            if (s[j].srednia > s[j+1].srednia) {
+                tmp = s[j];
+                s[j] = s[j+1];
+                s[j+1] = tmp;
+            }
+        }
+    }
+}
+
+void _zamien(struct Student *s1, struct Student *s2) {
+    struct Student tmp;
+    tmp = *s1;
+    *s1 = *s2;
+    *s2 = tmp;
+}
+
+/*
+  kierunek=1 - sortowanie malejaco 
+  kierunek=-1 - sortowanie rosnaco 
+*/
+void sortuj_babelkowo_kierunek_naiwnie(struct Student s[], int n, int kierunek) {
+    int i,j;
+    struct Student tmp;
+
+    for (i=0; i < (n-1); i++) {
+        for (j=0; j < (n-1); j++) {
+            if (kierunek == MALEJACO) {
+                if (s[j].srednia < s[j+1].srednia) {
+                    // tmp = s[j];
+                    // s[j] = s[j+1];
+                    // s[j+1] = tmp;
+                    _zamien(&s[j], &s[j+1]);
+                }
+            } else {
+                if (s[j].srednia > s[j+1].srednia) {
+                    // tmp = s[j];
+                    // s[j] = s[j+1];
+                    // s[j+1] = tmp;
+                    _zamien(&s[j], &s[j+1]);
+                }
+            }
+        }
+    }
+}
+
+void sortuj_babelkowo_kierunek(struct Student s[], int n, int kierunek) {
+    int i,j;
+    struct Student tmp;
+
+    for (i=0; i < (n-1); i++)
+        for (j=0; j < (n-1); j++)
+            if ( kierunek*(s[j+1].srednia - s[j].srednia) > 0 )
+                _zamien(&s[j], &s[j+1]);
 }

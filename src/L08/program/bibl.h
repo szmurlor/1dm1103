@@ -1,4 +1,7 @@
 
+#define MALEJACO 1
+#define ROSNACO -1
+
 struct Ocena {
     float ocena;
     int ects;
@@ -19,4 +22,9 @@ struct Student {
 
 int wczytaj(char *fname, struct Student studenci[]);
 void wypisz_na_ekran(struct Student s[], int n);
+void wypisz_na_ekran_srednie(struct Student s[], int n);
 void oblicz_srednie(struct Student s[], int n);
+void sortuj_babelkowo(struct Student s[], int n);
+void sortuj_babelkowo_rosnaco(struct Student s[], int n);
+void sortuj_babelkowo_kierunek_naiwnie(struct Student s[], int n, int kierunek);
+void sortuj_babelkowo_kierunek(struct Student s[], int n, int kierunek);

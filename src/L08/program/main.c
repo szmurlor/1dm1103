@@ -17,7 +17,11 @@ int main(int argc, char *argv[]) {
     /* n = wczytaj(argv[1], studenci); */
     n = wczytaj(argv[1], &studenci[0]);
     oblicz_srednie(studenci, n);
-    wypisz_na_ekran(studenci, n);
+    // sortuj_babelkowo_rosnaco(studenci, n);
+    sortuj_babelkowo_kierunek_naiwnie(studenci, n, MALEJACO);
+    sortuj_babelkowo_kierunek_naiwnie(studenci, n, ROSNACO);
+    sortuj_babelkowo_kierunek(studenci, n, MALEJACO);
+    wypisz_na_ekran_srednie(studenci, n);
 
     printf("Rozmiar struktury Student to %ld\n", sizeof(struct Student));
     printf("Rozmiar struktury Ocena to %ld\n", sizeof(struct Ocena));
