@@ -186,7 +186,7 @@ Scenariusz:
 Będziemy dalej pracować na danych przykładowych.
 
 ```
-3
+6
 Jan Kowalski 234567
 4
 Matematyka dyskretna;4.5;4;Prof.Sasin
@@ -202,6 +202,20 @@ Maria-Curie Skłodowska 234569
 Matematyka dyskretna;5.0;4;Prof.Sasin
 Podstawy informatyki;2.0;2;Prof.Starzyński
 Teoria obwodów i sygnalów;4.0;4;Prof.Osowski
+Ewa Chotomska 234569
+2
+Matematyka dyskretna;5.0;4;Prof.Sasin
+Podstawy informatyki;4.0;2;Prof.Starzyński
+Tomek Sawyer 234571
+3
+Matematyka dyskretna;5.0;6;Prof.Sasin
+Podstawy informatyki;4.5;2;Prof.Starzyński
+Algebra;4.0;1;Prof.Multarzyński
+Iza Góralska 234572
+3
+Matematyka dyskretna;4.0;6;Prof.Sasin
+Podstawy informatyki;4.5;2;Prof.Starzyński
+Algebra;4.0;1;Prof.Multarzyński
 ```
 
 
