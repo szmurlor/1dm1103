@@ -4,6 +4,154 @@
 
 #include "bibl.h"
 
+int sortuj_babelkowo(struct Student *studenci, int n) {
+    int changed = 0;
+    int counter = 0;
+    struct Student tmp;
+    int i, j;
+
+    for (i=0; i < (n-1); i++) {
+        for (j = 0; j < (n-1); j++) {
+            counter++;
+            if (studenci[j].srednia < studenci[j+1].srednia) {
+                changed = 1;
+                tmp = studenci[j];
+                studenci[j] = studenci[j+1];
+                studenci[j+1] = tmp;
+            }
+        }
+        if (changed == 0)
+            break;
+    }
+
+    return counter;
+}
+
+int sortuj_babelkowo_malejaco(struct Student *studenci, int n) {
+    int changed = 0;
+    struct Student tmp;
+    int i, j;
+    int counter = 0;
+
+    for (i=0; i < (n-1); i++) {
+        for (j = 0; j < (n-1); j++) {
+            counter++;
+            if (studenci[j].srednia < studenci[j+1].srednia) {
+                changed = 1;
+                tmp = studenci[j];
+                studenci[j] = studenci[j+1];
+                studenci[j+1] = tmp;
+            }
+        }
+        if (changed == 0)
+            break;
+    }
+
+    return counter;
+}
+
+int sortuj_babelkowo_rosnaco(struct Student *studenci, int n) {
+    int changed = 0;
+    struct Student tmp;
+    int i, j;
+    int counter = 0;
+
+    for (i=0; i < (n-1); i++) {
+        for (j = 0; j < (n-1); j++) {
+            counter++;
+            if (studenci[j].srednia > studenci[j+1].srednia) {
+                changed = 1;
+                tmp = studenci[j];
+                studenci[j] = studenci[j+1];
+                studenci[j+1] = tmp;
+            }
+        }
+        if (changed == 0)
+            break;
+    }
+
+    return counter;
+}
+
+
+// int sortuj_babelkowo_kierunek(struct Student *studenci, int n, int kierunek) {
+//     int changed = 0;
+//     int counter = 0;
+//     struct Student tmp;
+//     int i, j;
+
+//     for (i=0; i < (n-1); i++) {
+//         for (j = 0; j < (n-1); j++) {
+//             counter++;
+//             if (kierunek == ROSNACO) {
+//                 if (studenci[j].srednia < studenci[j+1].srednia) {
+//                     changed = 1;
+//                     tmp = studenci[j];
+//                     studenci[j] = studenci[j+1];
+//                     studenci[j+1] = tmp;
+//                 }
+//             } else {
+//                 if (studenci[j].srednia > studenci[j+1].srednia) {
+//                     changed = 1;
+//                     tmp = studenci[j];
+//                     studenci[j] = studenci[j+1];
+//                     studenci[j+1] = tmp;
+//                 }
+//             }
+//         }
+//         if (changed == 0)
+//             break;
+//     }
+
+//     return counter;
+// }
+
+
+int sortuj_babelkowo_kierunek(struct Student *studenci, int n, int kierunek) {
+    int changed = 0;
+    int counter = 0;
+    struct Student tmp;
+    int i, j;
+
+    for (i=0; i < (n-1); i++) {
+        for (j = 0; j < (n-1); j++) {
+            counter++;
+            if (kierunek * (studenci[j+1].srednia - studenci[j].srednia) > 0) {
+                changed = 1;
+                tmp = studenci[j];
+                studenci[j] = studenci[j+1];
+                studenci[j+1] = tmp;
+            }
+        }
+        if (changed == 0)
+            break;
+    }
+
+    return counter;
+}
+
+int sortuj_wybieranie_kierunek(struct Student *studenci, int n, int kierunek) {
+    int counter = 0;
+    struct Student tmp;
+    int imax = 0;
+    int i, j;
+
+    for (i=0; i < (n-1); i++) {
+        imax = i;
+        for (j = i+1; j < n; j++) {
+            counter++;
+            if (kierunek * (studenci[j].srednia - studenci[imax].srednia) > 0) {
+                imax = j;
+            }
+        }
+        tmp = studenci[i];
+        studenci[i] = studenci[imax];
+        studenci[imax] = tmp;
+    }
+
+    return counter;
+}
+
 int wczytaj(char *fname, struct Student studenci[]) {
     int n = 0, i, o;
     FILE *fin;
@@ -59,6 +207,15 @@ int wczytaj(char *fname, struct Student studenci[]) {
     return n;
 }
 
+
+void wypisz_na_ekran_srednie(struct Student s[], int n) {
+    int i,j;
+    // struct Ocena o;
+    struct Ocena *o;
+    for (i=0; i < n; i++) {
+        printf("%s %s - %s = %f\n", s[i].imie, s[i].nazwisko, s[i].nr_albumu, s[i].srednia);
+    }
+}
 
 void wypisz_na_ekran(struct Student s[], int n) {
     int i,j;

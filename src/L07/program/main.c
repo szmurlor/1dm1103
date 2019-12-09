@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[]) {
     int n;
+    int c;
     /*struct Student astudenci[20];*/
     struct Student *studenci;
     studenci = (struct Student*) malloc(20 * sizeof(struct Student));
@@ -21,6 +22,23 @@ int main(int argc, char *argv[]) {
 
     printf("Rozmiar struktury Student to %ld\n", sizeof(struct Student));
     printf("Rozmiar struktury Ocena to %ld\n", sizeof(struct Ocena));
+
+    c = sortuj_babelkowo_rosnaco(studenci, n);
+    wypisz_na_ekran_srednie(studenci, n);
+    printf("Wykonałem %d porównań.\n", c);
+
+    c = sortuj_babelkowo_kierunek(studenci, n, ROSNACO);
+    wypisz_na_ekran_srednie(studenci, n);
+    printf("Wykonałem %d porównań.\n", c);
+
+    c = sortuj_babelkowo_kierunek(studenci, n, MALEJACO);
+    wypisz_na_ekran_srednie(studenci, n);
+    printf("Wykonałem %d porównań.\n", c);
+
+    printf("WYBIERANIE\n");
+    c = sortuj_wybieranie_kierunek(studenci, n, MALEJACO);
+    wypisz_na_ekran_srednie(studenci, n);
+    printf("Wykonałem %d porównań.\n", c);
 
     return 0;
 }
