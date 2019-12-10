@@ -12,7 +12,7 @@ void print_help_and_exit(char *pname) {
            "\t * x - nazwa pliku z wektorem współrzędnych x\n"
            "\t * wynik - nazwa pliku gdzie maja zostac wypisane wyniki\n"
            , pname);
-
+           
     exit(-1);
 }
 
