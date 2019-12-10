@@ -20,3 +20,8 @@ test: main
 	./main ../../L06/dane
 	#./main
 	#./main ../../L07/dane	
+
+test_sortowanie: main
+	./main dane_sort_1
+	#./main
+	#./main ../../L07/dane		
