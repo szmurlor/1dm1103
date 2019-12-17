@@ -1,14 +1,28 @@
 #include "bibl.h"
+#include "utils.h"
 #include <math.h>
+#include <stdlib.h>
 
-int read_vec(FILE * fin, double *v, int max){
+int read_vec(FILE * fin, double **v){
     double d;
-    int i = 0;
+    int n = 0, j;
+    double *vn; // v new
+    double *vo = NULL; // v old
+    debug("Dynamicznie alokuje pamiec!\n");
+    while ( fscanf(fin, "%lf", &d) == 1 ) {
+        vn = (double*) malloc( sizeof(double) * (n+1));
+        for (j = 0; j < n; j++) {
+            vn[j] = vo[j];
+        }
+        if (vo != NULL)
+            free(vo);
+        vn[n] = d;
+        vo = vn;
+        n++;
+    }
 
-    while ( (fscanf(fin, "%lf", &d) == 1)
-            && (i < max) )
-        v[i++] = d;
-    return i;
+    *v = vn;    
+    return n;
 }
 
 void save_2vecs(FILE * fout, double *x, double *y, int n) {
@@ -29,7 +43,8 @@ void save_2vecs(FILE * fout, double *x, double *y, int n) {
 */
 void polyval(double *a, int na, double *x, int nx, double *f ) {
     int i, j;
-    printf("Liczę jawną implementacją z definicji.\n")
+    debug("Liczę jawną implementacją z definicji.\n");
+    /* debug(swiety turecki KUPA); */
     for (i=0; i < nx; i++) {
         f[i] = 0;
         for (j = 0; j < na; j++) {
@@ -44,7 +59,7 @@ Schemat Hornera - redukcja błędu zaookrągleń
 */
 void polyval_horner(double *a, int na, double *x, int nx, double *f ) {
     int i, j;    
-    printf("Liczę schematem Hornera.\n")
+    debug("Liczę schematem Hornera.\n");
     for (i=0; i < nx; i++) {
         f[i] = a[na-1];
         for (j = na-2; j >=  0; j--) {
