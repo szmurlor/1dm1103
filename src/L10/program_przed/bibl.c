@@ -1,5 +1,6 @@
 #include "bibl.h"
 #include <math.h>
+#include "utils.h"
 
 int read_vec(FILE * fin, double *v, int max){
     double d;
@@ -29,6 +30,8 @@ void save_2vecs(FILE * fout, double *x, double *y, int n) {
 */
 void polyval(double *a, int na, double *x, int nx, double *f ) {
     int i, j;
+
+    debug("Obliczam wartości wielomianu zgodnie wzorem definicyjnym.\n");
     for (i=0; i < nx; i++) {
         f[i] = 0;
         for (j = 0; j < na; j++) {
@@ -40,8 +43,10 @@ void polyval(double *a, int na, double *x, int nx, double *f ) {
 /*
 Schemat Hornera - redukcja błędu zaookrągleń
 */
-void polyval_horner(double *a, int na, double *x, int nx, double *f ) {
+void polyval_horner(double *a, int na, double *x, int nx, double *f ) {    
     int i, j;    
+    
+    debug("Obliczam wartości wielomianu zgodnie ze schematem hornera.\n");
     for (i=0; i < nx; i++) {
         f[i] = a[na-1];
         for (j = na-2; j >=  0; j--) {
@@ -49,4 +54,3 @@ void polyval_horner(double *a, int na, double *x, int nx, double *f ) {
         }
     }
 }
-
