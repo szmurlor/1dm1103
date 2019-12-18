@@ -12,11 +12,11 @@ Scenariusz:
     * pamiętamy o **zwolnieniu zasobów** - czyli zamknięciu plików za pomocą `fclose(...)`.
 * przypomnieliśmy, jak obliczany jest wielomian - pokazaliśmy, że często wygodniej jest zapisać scenariusz obliczania, proces w formie algorytmicznej, ponieważ wtedy jest łatwiej napisać do niej kod programu,\
   \
-  $$p(x) = a*0 + a*1 x + a*2 x^2 + \\ldots + a*n x^n$$
+  ![p(x) = a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n](https://latex.codecogs.com/svg.latex?p(x)&space;=&space;a_0&space;&plus;&space;a_1&space;x&space;&plus;&space;a_2&space;x^2&space;&plus;&space;\ldots&space;&plus;&space;a_n&space;x^n)
 
   lub w formie algorytmicznej
 
-  $$p(x) = \\sum\\limits*{i=0}^{n} a*i x^i$$\
+  ![p(x) = \sum\limits_{i=0}^{n} a_i x^i](https://latex.codecogs.com/svg.latex?p(x)&space;=&space;\sum\limits_{i=0}^{n}&space;a_i&space;x^i)\
   \
   następnie napisaliśmy bardzo prosty kod obliczający wartość wielomianu dla jednego x:
 
