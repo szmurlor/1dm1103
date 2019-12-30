@@ -13,7 +13,7 @@ Aby wyświetlić materiały z zajęć należy kliknąć na "niebieski link src",
 Seminarium 8 << 60 minutowy SPRAWDZIAN (bedzie trzeba napisac program na komputerze)  
 [Seminarium 9](src/L09)  
 [Seminarium 10](src/L10)  
-Seminarium 11  
+[Seminarium 11](src/L11)  
 Seminarium 12  
 Seminarium 13  
 Seminarium 14  
