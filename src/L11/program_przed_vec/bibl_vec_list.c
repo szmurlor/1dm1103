@@ -125,9 +125,9 @@ PVec polyval_horner(PVec a, PVec x) {
 
     debug("Liczę schematem Hornera.\n");
     for (i=0; i < x->n; i++) {
-        set_item(f,i, get_item(a, a->n-1));
+        set_item(f,i, get_item(a, a->n-1)); // f[i] = a[a->n-1]
         for (j = a->n - 2; j >=  0; j--) {
-            set_item(f, i, get_item(a,j) + get_item(x,i) * get_item(f, i));
+            set_item(f, i, get_item(a,j) + get_item(x,i) * get_item(f, i)); // f[i] = a[j] + x[i]*f[i]
         }
     }
 

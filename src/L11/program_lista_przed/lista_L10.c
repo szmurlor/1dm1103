@@ -21,10 +21,25 @@ void wypisz(struct Lista * h) {
     }
 }
 
+struct Lista * get(struct Lista *h, int i) {
+
+    while ( i > 0) {
+        h = h->nast;
+        i--;
+    }
+
+    return h;
+}
+
 int main(int argc, char** argv) {
-    struct Lista * head = nowy(10.4);
-    head->nast = nowy(11.1);
+    struct Lista * head = nowy(1.1);
+    head->nast = nowy(-1.4);
+    head->nast->nast = nowy(4.1);
+    head->nast->nast->nast = nowy(53.87);
 
     wypisz(head);
+
+    // pamiętajmy, że w C indeksujemy od 0, czyli 'ludzki' pierwszy w C jest 0
+    printf("Trzeci element listy to: %f\n", get(head, 2)->v);
     return 0;
 }
