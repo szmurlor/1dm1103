@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "bibl_vec_array.h"
+#include "bibl_vec.h"
 
 
 void print_help_and_exit(char *pname) {
@@ -47,6 +47,7 @@ int main(int argc, char ** argv) {
 
     vec_free(a);
     vec_free(x);
+    vec_free(f);
 
     fclose(fa);
     fclose(fx);

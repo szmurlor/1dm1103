@@ -1,7 +1,10 @@
-CFLAGS=-DDEBUG -I../wspolne
+# poniżej wybieramy wariant implementacji - albo domyślnie za pomocą tablicy liczby typu double, albo za pomocą listy jednokierunkowej
+CFLAGS=-DDEBUG -I../wspolne 
+#CFLAGS=-DDEBUG -I../wspolne -DVEC_LIST
 PROG=prog11_vec
 
-$(PROG): bibl_vec_array.c prog11_vec.c
+
+$(PROG): bibl_vec.c prog11_vec.c 
 	cc $^ -lm -o $(PROG) $(CFLAGS)
 
 test: $(PROG)

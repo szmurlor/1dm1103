@@ -9,6 +9,7 @@
 #include <string.h>
 
 PVec vec_new(int size) {
+    debug("Tworzę nowy wektor zgodnie z implmentacją TABLICY LICZB DOUBLE\n");
     PVec v = (PVec) malloc(sizeof(Vec));
     v->n = size;
     if (size > 0)
