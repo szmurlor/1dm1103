@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "bibl_vec_struct.h"
+#include "bibl_vec_array.h"
 
 
 void print_help_and_exit(char *pname) {
@@ -48,14 +48,6 @@ int main(int argc, char ** argv) {
     vec_free(a);
     vec_free(x);
 
-    /* f = polyval(a, na, x, nx); */
-/*    f = polyval_horner(a, na, x, nx);
-
-    
-    free(a);
-    free(x);
-    free(f);
-*/
     fclose(fa);
     fclose(fx);
     fclose(fwynik);

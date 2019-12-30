@@ -1,5 +1,8 @@
-#include "bibl_vec_struct.h"
-#include "utils.h"
+#include "bibl_vec_array.h"
+// #include "../wspolne/utils.h"
+// dzieki dodaniu w makefile'u argumentu podczas kompilacji -I../wspolne
+
+#include <utils.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -81,35 +84,3 @@ PVec polyval_horner(PVec a, PVec x) {
 
     return f;
 }
-
-
-#ifdef ala
-
-/*
- 
- Funkcja oblicza wartość wielomianu, o współczynnikach w wektorze a.
- Stopień wielomianu wynika z rozmiaru wektora współczynników a.
- Wielomian jest postaci:
-
- p(x) = a[0] + a[1]*x + a[2]*x^2 + ... a[na] * x^(na-1)
-
-*/
-double * polyval(double *a, int na, double *x, int nx) {
-    int i, j;
-    double *f = (double*) malloc(sizeof(double)*nx);
-
-    debug("Liczę jawną implementacją z definicji.\n");
-    /* debug(swiety turecki KUPA); */
-    for (i=0; i < nx; i++) {
-        f[i] = 0;
-        for (j = 0; j < na; j++) {
-            f[i] += a[j] * pow(x[i], j);
-        }
-    }
-
-    return f;
-}
-
-
-
-#endif
