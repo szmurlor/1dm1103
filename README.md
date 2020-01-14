@@ -14,7 +14,7 @@ Seminarium 8 << 60 minutowy SPRAWDZIAN (bedzie trzeba napisac program na kompute
 [Seminarium 9](src/L09)  
 [Seminarium 10](src/L10)  
 [Seminarium 11](src/L11)  
-Seminarium 12  
+[Seminarium 12](src/L12)  
 Seminarium 13  
 Seminarium 14  
 Seminarium 15 << 1:30 minutowy sprawdzian (bedzie trzeba napisac kilka programow)  
