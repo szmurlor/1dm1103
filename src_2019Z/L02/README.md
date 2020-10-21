@@ -37,7 +37,7 @@ Scenariusz zajęć:
    }
    ```
 
-4. Dodanie d programu wyświetlania wszystkich argumentów podanych z linii komend.
+4. Dodanie do programu wyświetlania wszystkich argumentów podanych z linii komend.
 
    ```c
    #include <stdio.h>

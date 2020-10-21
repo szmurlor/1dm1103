@@ -1,0 +1,1 @@
+Zajęcia organizacyjne. Stacjonarne 1h.
