@@ -9,12 +9,12 @@ Aby wyświetlić materiały z zajęć należy kliknąć na "niebieski link src",
 [Seminarium 4](src/L04)  
 [Seminarium 5](src/L05)  
 [Seminarium 6](src/L06)   
-[Seminarium 7](src/L07)  *(jeszcze nie gotowe)*  
-Seminarium 8 << 45 minutowy SPRAWDZIAN (bedzie trzeba napisac program na komputerze)  
-Seminarium 9  
-Seminarium 10  
-Seminarium 11  
-Seminarium 12  
-Seminarium 13  
+[Seminarium 7](src/L07)    
+Seminarium 8 << 90 minutowy SPRAWDZIAN (będzie trzeba napisać kilka krótkich programów program na komputerze)  
+[Seminarium 9](src/L09)  
+[Seminarium 10](src/L10)  
+[Seminarium 11](src/L11)  
+[Seminarium 12](src/L12)  
+[Seminarium 13](src/L13)  - GUI w języku C - na przykładzie Gtk
 Seminarium 14  
-Seminarium 15 << 1:30 minutowy sprawdzian (bedzie trzeba napisac kilka programow)  
+Seminarium 15 << 90 minutowy SPRAWDZIAN (będzie trzeba napisać kilka programów)  
