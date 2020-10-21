@@ -1,0 +1,2 @@
+plot "wynik.txt" with linespoints
+pause 10
